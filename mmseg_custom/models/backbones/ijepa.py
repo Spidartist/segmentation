@@ -354,7 +354,7 @@ class IJEPA(BaseModule):
         self.init_weights()
 
     def init_weights(self):
-        warnings.warn('\n\nuse Pretrained weight\n\n')
+        warnings.warn('\n\nUse Pretrained weight\n\n')
         # warnings.warn(self.init_cfg)
         checkpoint = _load_checkpoint(
             self.init_cfg['checkpoint'], logger=None, map_location='cpu')
