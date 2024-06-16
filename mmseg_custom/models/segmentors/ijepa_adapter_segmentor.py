@@ -5,7 +5,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from mmseg.registry import MODELS
-from .lib.conv_layer import Conv, BNPReLU
+from .lib.conv_layer import Conv
 from .lib.axial_atten import AA_kernel
 from .lib.context_module import CFPModule
 
@@ -63,6 +63,10 @@ class IJEPASegmentor(nn.Module):
 
     def forward(self, inputs):
         x = self.backbone(inputs)
+
+        if hasattr(self, 'neck'):
+            x = self.neck(x)
+
         x1 = x[0] # 1/4
         x2 = x[1] # 1/8
         x3 = x[2] # 1/16
